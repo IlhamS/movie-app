@@ -1,0 +1,41 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 col-sm-10 col-md-8">
+            <h1>List of movies</h1>
+            <div class="left">
+                <p-table #dt [value]="movieData" [paginator]="true" [rows]="100" totalRecords="totalRecords"
+                    pageLinks="20" [globalFilterFields]="['title', 'year', 'cast', 'genres']">
+                    <ng-template pTemplate="caption">
+                        <div style="text-align: right">
+                            <i class="pi pi-search" style="margin:4px 4px 0 0"></i>
+                            <input type="text" pInputText size="50" class="search-input" placeholder="Search movies"
+                                (input)="dt.filterGlobal($event.target.value, 'contains')">
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>Title</th>
+                            <th>Year</th>
+                            <th>Cast</th>
+                            <th>Genres</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-movieData let-columns="movieData">
+                        <tr>
+                            <td>{{movieData.title}}</td>
+                            <td>{{movieData.year}}</td>
+                            <td>{{movieData.cast}}</td>
+                            <td>{{movieData.genres}}</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+        <div class="col-md-4 col-md-offset-8">
+            <div class="right">
+                <h2>Add movies</h2>
+                <app-add-movie></app-add-movie>
+            </div>
+        </div>
+    </div>
+</div>

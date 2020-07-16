@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-10">
+            <form [formGroup]="formAddMovies" (ngSubmit)="onSubmit()">
+                
+                <span class="help-block" *ngIf="!formAddMovies.valid && formAddMovies.touched">
+                    Please fill all fields.
+                </span>
+                
+                <div formGroupName="movieData">
+
+                    <div class="form-group">
+                        <label for="title">Title*</label>
+                        <input type="text" class="form-control" id="title" formControlName="title">
+                        <span class="help-block"
+                            *ngIf="!formAddMovies.get('movieData.title').valid&&formAddMovies.get('movieData.title').touched">
+                            <span *ngIf="formAddMovies.get('movieData.title').errors['required']">Please enter a value</span>
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="year">Year*</label>
+                        <input type="text" class="form-control" id="year" formControlName="year">
+                        <span class="help-block"
+                            *ngIf="!formAddMovies.get('movieData.year').valid&&formAddMovies.get('movieData.year').touched">
+                            <span *ngIf="formAddMovies.get('movieData.year').errors['required']">Please enter a value</span>
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cast">Cast*</label>
+                        <input type="text" class="form-control" id="cast" formControlName="cast">
+                        <span class="help-block"
+                            *ngIf="!formAddMovies.get('movieData.cast').valid&&formAddMovies.get('movieData.cast').touched">
+                            <span *ngIf="formAddMovies.get('movieData.cast').errors['required']">Please enter a value</span>
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="genres">Genres*</label>
+                        <input type="text" class="form-control" id="genres" formControlName="genres">
+                        <span class="help-block"
+                            *ngIf="!formAddMovies.get('movieData.genres').valid&&formAddMovies.get('movieData.genres').touched">
+                            <span *ngIf="formAddMovies.get('movieData.genres').errors['required']">Please enter a value</span>
+                        </span>
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="submit" [disabled]="!formAddMovies.valid">Add movie</button>
+                <p>Submitted values : {{formData | json}}</p>
+            </form>
+        </div>
+    </div>
+</div>
